@@ -12,7 +12,7 @@ import {
 import { ServerApi } from "@local/api";
 import { Effect, Layer } from "effect";
 import { createServer } from "node:http";
-import { DatabaseLive } from "./migration";
+import { MigratorLive } from "./migrator";
 import { RestApiLive } from "./rest";
 
 const EnvProviderLayer = Layer.unwrapEffect(
@@ -23,7 +23,7 @@ const EnvProviderLayer = Layer.unwrapEffect(
 );
 
 const MainApiLive = HttpApiBuilder.api(ServerApi).pipe(
-  Layer.provide([DatabaseLive, RestApiLive]),
+  Layer.provide([MigratorLive, RestApiLive]),
   Layer.provide(EnvProviderLayer)
 );
 
