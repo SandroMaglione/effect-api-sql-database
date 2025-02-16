@@ -12,7 +12,7 @@ export class User extends Schema.Class<User>("User")({
   created_at: Schema.DateFromSelf,
 }) {}
 
-class RestGroup extends HttpApiGroup.make("rest")
+class UserGroup extends HttpApiGroup.make("user")
   .add(
     HttpApiEndpoint.post("create-user")`/user/create`
       .setPayload(Schema.Struct({ name: Schema.String }))
@@ -27,4 +27,4 @@ class RestGroup extends HttpApiGroup.make("rest")
       .addSuccess(User)
   ) {}
 
-export class ServerApi extends HttpApi.make("server-api").add(RestGroup) {}
+export class ServerApi extends HttpApi.make("server-api").add(UserGroup) {}

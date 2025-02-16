@@ -13,7 +13,7 @@ import { ServerApi } from "@local/api";
 import { Effect, Layer } from "effect";
 import { createServer } from "node:http";
 import { MigratorLive } from "./migrator";
-import { RestApiLive } from "./rest";
+import { UserGroupLive } from "./user";
 
 const EnvProviderLayer = Layer.unwrapEffect(
   PlatformConfigProvider.fromDotEnv(".env").pipe(
@@ -23,7 +23,7 @@ const EnvProviderLayer = Layer.unwrapEffect(
 );
 
 const MainApiLive = HttpApiBuilder.api(ServerApi).pipe(
-  Layer.provide([MigratorLive, RestApiLive]),
+  Layer.provide([MigratorLive, UserGroupLive]),
   Layer.provide(EnvProviderLayer)
 );
 
