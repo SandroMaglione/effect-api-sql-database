@@ -14,14 +14,14 @@ export class User extends Schema.Class<User>("User")({
 
 class UserGroup extends HttpApiGroup.make("user")
   .add(
-    HttpApiEndpoint.post("create-user")`/user/create`
+    HttpApiEndpoint.post("createUser")`/user/create`
       .setPayload(Schema.Struct({ name: Schema.String }))
       .addError(Schema.String)
       .addSuccess(User)
   )
   .add(
     HttpApiEndpoint.get(
-      "get-user"
+      "getUser"
     )`/user/get/${HttpApiSchema.param("id", Schema.NumberFromString)}`
       .addError(Schema.String)
       .addSuccess(User)

@@ -9,7 +9,7 @@ export const UserGroupLive = HttpApiBuilder.group(
   "user",
   (handlers) =>
     handlers
-      .handle("create-user", ({ payload }) =>
+      .handle("createUser", ({ payload }) =>
         Effect.gen(function* () {
           const sql = yield* SqlClient.SqlClient;
 
@@ -26,7 +26,7 @@ export const UserGroupLive = HttpApiBuilder.group(
           Effect.mapError((error) => error.message)
         )
       )
-      .handle("get-user", ({ path }) =>
+      .handle("getUser", ({ path }) =>
         Effect.gen(function* () {
           const sql = yield* SqlClient.SqlClient;
 
